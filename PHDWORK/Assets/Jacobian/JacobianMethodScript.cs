@@ -10,7 +10,7 @@ public class JacobianMethodScript : MonoBehaviour
     public Transform[] Chain;
 
 
-    public Transform Goal; // The Goal position
+    public Transform Goal; 
 
     public float[] AnglesX; 
     public float[] AnglesY; 
@@ -52,7 +52,8 @@ public class JacobianMethodScript : MonoBehaviour
     }
     Vector4 CalculateJacobianTranspose(Matrix4x4 JacobianIn)
     {
-        //angle = JacobianTranspose * 
+        //angle = JacobianTranspose * vector 
+        // it's already dot product in matrix form due to the 3 make jacobian methods
         return JacobianIn.transpose * GoalGoalVector;
     }
     
