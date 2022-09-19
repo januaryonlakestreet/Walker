@@ -6,6 +6,14 @@ TagManager:
   tags:
   - Goal
   - MovePoint
+  - LGoal
+  - RGoal
+  - LPole
+  - RPole
+  - LarmGoal
+  - RarmGoal
+  - Lfoot
+  - Rfoot
   layers:
   - Default
   - TransparentFX

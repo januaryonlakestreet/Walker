@@ -6,5 +6,13 @@ using UnityEngine;
 public class joint : MonoBehaviour
 {
     public Vector3 MaxRotation, MinRotation;
-    public float PoleStrength;
+
+    public Vector3 rotdif;
+    
+    public float Angle;
+    public float MaxAngle = 120;
+    public float MinAngle = -120;
+
+
+
 }

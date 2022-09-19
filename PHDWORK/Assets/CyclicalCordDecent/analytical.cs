@@ -34,7 +34,7 @@ public class analytical : MonoBehaviour
             chains.Add(Current);
             Current = Current.GetChild(0);
         }
-        chains.Add(GameObject.Find("Bone014").transform);
+        //chains.Add(GameObject.Find("Bone014").transform);
         End = chains[chains.Count - 1];
         chains.Reverse();
         #endregion

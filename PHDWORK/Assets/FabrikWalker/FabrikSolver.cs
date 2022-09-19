@@ -55,18 +55,7 @@ using UnityEngine;
             }
             current = current.parent;
         }
-        #region Get the closest goal object
-        List<GameObject> AllTargets = new List<GameObject>(GameObject.FindGameObjectsWithTag("Goal"));
-        float maxdist = Mathf.Infinity;
-        foreach (GameObject g in AllTargets)
-        {
-            if (Vector3.Distance(this.transform.position, g.transform.position) < maxdist)
-            {
-                maxdist = Vector3.Distance(this.transform.position, g.transform.position);
-                Target = g.transform;
-            }
-        }
-        #endregion
+       
 
     }
 
