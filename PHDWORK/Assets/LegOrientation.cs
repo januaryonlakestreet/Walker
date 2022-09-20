@@ -16,13 +16,10 @@ public class LegOrientation : MonoBehaviour
     void Update()
     {
         Goal = FindObjectOfType<Biped>().BipedGoal;
-        Dir = this.transform.forward;
-        Quaternion dirrot = Quaternion.FromToRotation((Dir - Goal.transform.position), Vector3.up);
-        Debug.DrawRay(this.transform.position, dirrot.eulerAngles, Color.red, Time.deltaTime);
-        Debug.DrawRay(this.transform.position, Dir, Color.green, Time.deltaTime);
+        Dir = this.transform.position;
+        Vector3 DirectionToGoal = Goal.transform.position - Dir;
 
-        dirrot.y = dirrot.y * -1f;
-        this.transform.rotation = dirrot;
-        this.transform.GetChild(0).transform.rotation = dirrot;
+        Debug.DrawRay(this.transform.position, DirectionToGoal, Color.red, Time.deltaTime);
+        this.transform.rotation = Quaternion.LookRotation(DirectionToGoal, -Vector3.up);
     }
 }

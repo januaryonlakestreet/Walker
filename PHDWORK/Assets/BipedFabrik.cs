@@ -6,7 +6,7 @@ public class BipedFabrik : MonoBehaviour
 {
 
     public Transform LeftLeg, RightLeg;
-    public FabrikBipedSolver BipedLeftLegGoal, BipedRightLegGoal, BipedLeftArm, BipedRightArm;
+    public FabrikBipedSolver BipedLeftLegGoal, BipedRightLegGoal;
     public Vector3 StepStartPosition;
 
 
@@ -14,14 +14,17 @@ public class BipedFabrik : MonoBehaviour
     Vector3 StartLocation;
     public Transform GoalHolder;
     public Transform BipedGoal;
-    public int LegID = 0;
-    public int stepcounter = 0;
+     int LegID = 0;
+     int stepcounter = 0;
     Vector3 DirToGoal;
     public int goalid = 7;
     Vector3 LabelPos;
     GameObject Label;
-    public float x, y;
+     float x, y;
     public GameObject HipReference;
+    public float StepDistanceNew;
+    public float HorizontalDistanceSpacing;
+    Vector3 dir;
     public void Reset()
     {
         this.transform.localPosition = StartLocation;
@@ -33,7 +36,7 @@ public class BipedFabrik : MonoBehaviour
     {
         x = 80f;
         y = 30f;
-        goalid = 7;
+       // goalid = 7;
         StepStartPosition = this.transform.localPosition;
         StartLocation = this.transform.localPosition;
         List<ArmSwing> arms = FindObjectsOfType<ArmSwing>().ToList();
@@ -43,8 +46,7 @@ public class BipedFabrik : MonoBehaviour
         }
         BipedGoal = GoalHolder.GetChild(goalid).transform;
     }
-    public float StepDistanceNew;
-    public float FootDistance;
+   
     float _stepdistNew(Transform t)
     {
         if (stepcounter == 0)
@@ -66,15 +68,15 @@ public class BipedFabrik : MonoBehaviour
 
     public Vector3 NewGoal;
 
-    public float tes;
-    public float r;
-    public Vector3 dir;
+  
     private void Update()
     {
         LabelPos = Camera.main.WorldToScreenPoint(HipReference.transform.position);
         LabelPos = new Vector3(LabelPos.x + x, LabelPos.y + y, LabelPos.z);
         Label = GameObject.Find("FabrikLabel");
         Label.GetComponent<RectTransform>().position = LabelPos;
+
+      
 
         DirToGoal = BipedGoal.transform.position - HipReference.transform.position;
         List<ArmSwing> arms = FindObjectsOfType<ArmSwing>().ToList();
@@ -158,8 +160,8 @@ public class BipedFabrik : MonoBehaviour
     }
     bool LegsClearToMove()
     {
-        if (BipedLeftLegGoal.Target.GetComponent<GoalBiped>().StepPositions.Count < 3 &&
-            BipedRightLegGoal.Target.GetComponent<GoalBiped>().StepPositions.Count < 3)
+        if (BipedLeftLegGoal.Target.GetComponent<GoalBiped>().StepPositions.Count < 1 &&
+            BipedRightLegGoal.Target.GetComponent<GoalBiped>().StepPositions.Count < 1)
         {
             return true;
         }
@@ -186,7 +188,7 @@ public class BipedFabrik : MonoBehaviour
     bool AtDestination()
     {
 
-        if (Vector3.Distance(BipedGoal.transform.position, HipReference.transform.position) < StepDistance)
+        if (Mathf.Ceil(Vector3.Distance(BipedGoal.transform.position, HipReference.transform.position))< StepDistance)
         {
             return true;
         }
@@ -213,11 +215,11 @@ public class BipedFabrik : MonoBehaviour
         switch (LegID)
         {
             case 0:
-                NewGoal.x -= FootDistance;
+                NewGoal.x -= HorizontalDistanceSpacing;
 
                 break;
             case 1:
-                NewGoal.x += FootDistance;
+                NewGoal.x += HorizontalDistanceSpacing;
 
                 break;
         }
@@ -227,7 +229,11 @@ public class BipedFabrik : MonoBehaviour
     }
 
 
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawSphere(NewGoal, 0.1f);
+    }
 
     public static List<Vector3> CalculateStepCurve(Vector3 StartPosition, Vector3 GoalPosition, bool curvedown = false)
     {

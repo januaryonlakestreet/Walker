@@ -76,16 +76,19 @@
     <Compile Include="Assets\Biped\Toes.cs" />
     <Compile Include="Assets\Biped\ArmSwing.cs" />
     <Compile Include="Assets\CyclicalCordDecent\analytical.cs" />
+    <Compile Include="Assets\BipedFabrik.cs" />
     <Compile Include="Assets\Biped\Direction.cs" />
     <Compile Include="Assets\FabrikWalker\Goal.cs" />
     <Compile Include="Assets\Solver\Solver.cs" />
     <Compile Include="Assets\Biped\HipsSway.cs" />
     <Compile Include="Assets\stage2\FuzzyMatching\FuzzyMatching.cs" />
+    <Compile Include="Assets\FabrikBipedSolver.cs" />
     <Compile Include="Assets\Biped\HipPosition.cs" />
     <Compile Include="Assets\CyclicalCordDecent\joint.cs" />
     <Compile Include="Assets\FabrikWalker\FabrikSolver.cs" />
-    <Compile Include="Assets\BipedFabrik.cs" />
-    <Compile Include="Assets\FabrikBipedSolver.cs" />
+    <Compile Include="Assets\Biped\FootOrientationFabrik.cs" />
+    <Compile Include="Assets\Biped\CCDLockRotation.cs" />
+    <Compile Include="Assets\Biped\LegOrientationFabrik.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

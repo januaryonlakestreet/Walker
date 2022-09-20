@@ -9,10 +9,11 @@ public class FootOrientation : MonoBehaviour
     Vector3 startEular;
     public Vector3 DesiredEular;
     public float yvalue = 0f;
+     
     // Start is called before the first frame update
     void Start()
     {
-        startEular = this.transform.eulerAngles;
+        startEular = this.transform.localEulerAngles;
     }
 
     // Update is called once per frame
@@ -27,8 +28,8 @@ public class FootOrientation : MonoBehaviour
     
         DesiredEular = Quaternion.LookRotation(DirectionToGoal, Vector3.up).eulerAngles;
         yvalue = DesiredEular.y;
-    this.transform.localEulerAngles = new Vector3(startEular.x, yvalue,startEular.z);
-       // this.transform.GetChild(0).transform.eulerAngles = startEular;
+        this.transform.localEulerAngles = startEular;
+     // this.transform.GetChild(0).transform.eulerAngles = startEular;
     }
  
 }

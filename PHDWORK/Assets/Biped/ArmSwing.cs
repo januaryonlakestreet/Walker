@@ -40,11 +40,17 @@ public class ArmSwing : MonoBehaviour
     }
     void Start()
     {
-        
+        if(Side == "Left")
+        {
+            direction = 0;
+        }
+        else
+        {
+            direction = 1;
+        }
 
 
 
-        direction = FindObjectsOfType<ArmSwing>().ToList().IndexOf(this);
         if(direction == 0)
         { timepassed = 1f; }
 
@@ -58,7 +64,7 @@ public class ArmSwing : MonoBehaviour
        
 
         if (!go) { return; }
-        timepassed += 0.5f*Time.deltaTime;
+        timepassed += 1f*Time.deltaTime;
         if (direction == 1)
         {
             this.transform.localPosition = Vector3.Lerp(BackObj.localPosition, ForwardObj.localPosition, timepassed);

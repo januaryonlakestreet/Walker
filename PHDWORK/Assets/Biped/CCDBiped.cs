@@ -10,7 +10,7 @@ using UnityEngine;
 public class CCDBiped : MonoBehaviour
 {
     public Transform Goal;
-    public int iterations = 1;
+     int iterations = 1;
     public List<Transform> chains = new List<Transform>();
     public Transform End;
     public Transform Pole;
@@ -20,6 +20,7 @@ public class CCDBiped : MonoBehaviour
     public float PoleStrengthBase = 0.3f;
     const int ChainLengthCutOff = 5;
     public int endcounter = 1;
+    public int ChainLength;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,15 +30,15 @@ public class CCDBiped : MonoBehaviour
        while (chains.Count < ChainLengthCutOff)
         {
             chains.Add(Current);
-            if(Current.childCount > 0 &&!Current.name.Contains("Toe"))
+            if(Current.childCount > 0 )
             {
                 Current = Current.GetChild(0);
             }
            
         }
 
-        End = chains[chains.Count - endcounter];
-      chains.Reverse();
+        End = chains[chains.Count-endcounter];
+        chains.Reverse();
     }
 
     // Update is called once per frame

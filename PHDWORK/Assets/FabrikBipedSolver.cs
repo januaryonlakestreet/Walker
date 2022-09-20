@@ -30,7 +30,7 @@ public class FabrikBipedSolver : MonoBehaviour
         Positions = new Vector3[ChainLength + 1];
         BonesLength = new float[ChainLength];
 
-        Root = transform;
+        Root = transform.parent;
         for (var a = 0; a <= ChainLength; a++)
         {
             Root = Root.parent;
@@ -135,6 +135,7 @@ public class FabrikBipedSolver : MonoBehaviour
         #region assign the new values to the bones
         for (int i = 0; i < Positions.Length; i++)
         {
+            if (Bones[i].GetComponent<FabrikBipedSolver>()) { continue; }
             if (i == Positions.Length - 1)
             {
                 Quaternion EndRot = Target.rotation * Quaternion.Inverse(StartRotationTarget) * StartRotationBone[i];
